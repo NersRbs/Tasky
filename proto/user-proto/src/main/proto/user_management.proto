@@ -5,31 +5,24 @@ package ru.ners.service;
 import "google/protobuf/empty.proto";
 
 message SaveUserRequest {
-  string username = 1;
-  string password = 2;
-  map<string, string> contacts = 3;
+  string email = 1;
+  string username = 2;
+  string password = 3;
 }
 
 message GetUserRequest {
-  int64 id = 1;
+  string username = 1;
 }
 
 message GetUserResponse {
   int64 id = 1;
-  string username = 2;
-  string password_hash = 3;
-  map<string, string> contacts = 4;
+  string email = 2;
+  string username = 3;
+  string password = 4;
 }
 
 message GetUsersResponse {
   repeated GetUserResponse users = 1;
-}
-
-message Contact {
-  oneof contact {
-    string email = 1;
-    string telegram = 2;
-  }
 }
 
 service UserService {

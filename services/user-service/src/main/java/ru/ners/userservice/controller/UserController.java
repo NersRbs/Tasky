@@ -17,9 +17,9 @@ public class UserController extends UserServiceGrpc.UserServiceImplBase {
     @Override
     public void saveUser(UserManagement.SaveUserRequest request, StreamObserver<Empty> responseObserver) {
         var user = User.builder()
+                .email(request.getEmail())
                 .username(request.getUsername())
-                .passwordHash(request.getPassword())
-                .contacts(request.getContactsMap())
+                .password(request.getPassword())
                 .build();
 
         userService.saveUser(user);
@@ -27,13 +27,13 @@ public class UserController extends UserServiceGrpc.UserServiceImplBase {
 
     @Override
     public void getUser(UserManagement.GetUserRequest request, StreamObserver<UserManagement.GetUserResponse> responseObserver) {
-        var user = userService.getUser(request.getId());
+        var user = userService.getUserByUsername(request.getUsername());
 
         var response = UserManagement.GetUserResponse.newBuilder()
                 .setId(user.getId())
+                .setEmail(user.getEmail())
                 .setUsername(user.getUsername())
-                .setPasswordHash(user.getPasswordHash())
-                .putAllContacts(user.getContacts())
+                .setPassword(user.getPassword())
                 .build();
 
         responseObserver.onNext(response);
@@ -48,9 +48,9 @@ public class UserController extends UserServiceGrpc.UserServiceImplBase {
         users.forEach(user -> responseBuilder.addUsers(
                 UserManagement.GetUserResponse.newBuilder()
                         .setId(user.getId())
+                        .setEmail(user.getEmail())
                         .setUsername(user.getUsername())
-                        .setPasswordHash(user.getPasswordHash())
-                        .putAllContacts(user.getContacts())
+                        .setPassword(user.getPassword())
                         .build()
                 )
         );

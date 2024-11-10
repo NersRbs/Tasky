@@ -12,8 +12,8 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 public class User {
-    Long id;
-    String username;
-    String passwordHash;
-    Map<String, String> contacts;
+    private Long id;
+    private String email;
+    private String username;
+    private String password;
 }
