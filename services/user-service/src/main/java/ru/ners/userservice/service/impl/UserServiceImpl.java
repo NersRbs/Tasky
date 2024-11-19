@@ -1,6 +1,5 @@
 package ru.ners.userservice.service.impl;
 
-import io.grpc.StatusRuntimeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.ners.userservice.exception.NotFoundException;
@@ -16,13 +15,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public void saveUser(User user) {
-        userRepository.saveUser(user);
+    public void addUser(User user) {
+        userRepository.addUser(user);
     }
 
     @Override
     public User getUserByUsername(String username) {
-        return userRepository.getUserByUsername(username)
+        return userRepository.getUserByName(username)
                 .orElseThrow(() -> new NotFoundException("User not found"));
     }
 

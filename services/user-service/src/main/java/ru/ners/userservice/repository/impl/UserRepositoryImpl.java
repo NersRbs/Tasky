@@ -17,16 +17,15 @@ public class UserRepositoryImpl implements UserRepository {
     private final UserMapper userMapper;
 
     @Override
-    public void saveUser(User user) {
-        String sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)" +
-                "ON CONFLICT (username) DO UPDATE SET email = ?, password = ?";
-        jdbcTemplate.update(sql, user.getEmail(), user.getUsername(), user.getPassword());
+    public void addUser(User user) {
+        String sql = "INSERT INTO users (email, name) VALUES (?, ?)";
+        jdbcTemplate.update(sql, user.getEmail(), user.getUsername());
     }
 
     @Override
-    public Optional<User> getUserByUsername(String username) {
-        String sql = "SELECT * FROM users WHERE username = ?";
-        return Optional.ofNullable(jdbcTemplate.queryForObject(sql, userMapper, username));
+    public Optional<User> getUserByName(String name) {
+        String sql = "SELECT * FROM users WHERE name = ?";
+        return Optional.ofNullable(jdbcTemplate.queryForObject(sql, userMapper, name));
     }
 
     @Override

@@ -1,8 +1,6 @@
 syntax = "proto3";
 
-package ru.ners.service;
-
-import "google/protobuf/empty.proto";
+package ru.ners.usermanagement.model;
 
 message SaveUserRequest {
   string email = 1;
@@ -11,7 +9,7 @@ message SaveUserRequest {
 }
 
 message GetUserRequest {
-  string username = 1;
+  string name = 1;
 }
 
 message GetUserResponse {
@@ -23,10 +21,4 @@ message GetUserResponse {
 
 message GetUsersResponse {
   repeated GetUserResponse users = 1;
-}
-
-service UserService {
-  rpc saveUser(SaveUserRequest) returns (google.protobuf.Empty);
-  rpc getUser(GetUserRequest) returns (GetUserResponse);
-  rpc getUsers(google.protobuf.Empty) returns (GetUsersResponse);
 }

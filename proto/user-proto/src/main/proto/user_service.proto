@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package ru.ners.usermanagement.service;
+
+import "google/protobuf/empty.proto";
+import "user_message.proto";
+
+service UserService {
+  rpc addUser(usermanagement.model.SaveUserRequest) returns (google.protobuf.Empty);
+  rpc getUserByName(usermanagement.model.GetUserRequest) returns (usermanagement.model.GetUserResponse);
+  rpc getUsers(google.protobuf.Empty) returns (usermanagement.model.GetUsersResponse);
+}
