@@ -24,11 +24,11 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":proto:user-proto"))
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("net.devh:grpc-client-spring-boot-starter:3.1.0.RELEASE")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<Test> {

@@ -15,7 +15,7 @@ public class UserController extends UserServiceGrpc.UserServiceImplBase {
     private final UserService userService;
 
     @Override
-    public void addUser(UserMessage.SaveUserRequest request, StreamObserver<Empty> responseObserver) {
+    public void addUser(UserMessage.AddUserRequest request, StreamObserver<Empty> responseObserver) {
         var user = User.builder()
                 .email(request.getEmail())
                 .username(request.getUsername())

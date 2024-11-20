@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package ru.ners.usermanagement.model;
 
-message SaveUserRequest {
+message AddUserRequest {
   string email = 1;
   string username = 2;
   string password = 3;
