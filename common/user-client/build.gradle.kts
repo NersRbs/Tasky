@@ -24,14 +24,8 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":common:grpc-exception"))
-    implementation(project(":proto:user-proto"))
-    implementation("net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE")
-    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.liquibase:liquibase-core")
+    implementation("org.springframework.boot:spring-boot-starter")
     compileOnly("org.projectlombok:lombok")
-    runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
