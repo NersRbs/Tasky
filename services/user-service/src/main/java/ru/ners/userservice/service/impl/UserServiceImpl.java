@@ -1,5 +1,6 @@
 package ru.ners.userservice.service.impl;
 
+import io.grpc.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.ners.grpc.exception.AlreadyExistsException;

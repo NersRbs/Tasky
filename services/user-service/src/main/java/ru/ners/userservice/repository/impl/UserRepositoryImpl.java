@@ -18,20 +18,21 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean existsUserByUsername(String username) {
-        String sql = "SELECT COUNT(*) FROM users WHERE name = ?";
+        String sql = "SELECT COUNT(*) FROM users WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, username) > 0;
     }
 
     @Override
     public void addUser(User user) {
-        String sql = "INSERT INTO users (email, name) VALUES (?, ?)";
-        jdbcTemplate.update(sql, user.getEmail(), user.getUsername());
+        String sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, user.getEmail(), user.getUsername(), user.getPassword());
     }
 
     @Override
     public Optional<User> getUserByUsername(String username) {
-        String sql = "SELECT * FROM users WHERE name = ?";
-        return Optional.ofNullable(jdbcTemplate.queryForObject(sql, userMapper, username));
+        String sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
+        List<User> users = jdbcTemplate.query(sql, userMapper, username);
+        return users.isEmpty() ? Optional.empty() : Optional.of(users.getFirst());
     }
 
     @Override

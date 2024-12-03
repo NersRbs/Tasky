@@ -7,6 +7,6 @@ import "user_message.proto";
 
 service UserService {
   rpc addUser(usermanagement.model.AddUserRequest) returns (google.protobuf.Empty);
-  rpc getUserByName(usermanagement.model.GetUserRequest) returns (usermanagement.model.GetUserResponse);
+  rpc getUserByUsername(usermanagement.model.GetUserByUsernameRequest) returns (usermanagement.model.GetUserResponse);
   rpc getUsers(google.protobuf.Empty) returns (usermanagement.model.GetUsersResponse);
 }

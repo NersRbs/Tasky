@@ -1,6 +1,7 @@
 package ru.ners.userservice.controller;
 
 import com.google.protobuf.Empty;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
@@ -23,11 +24,14 @@ public class UserController extends UserServiceGrpc.UserServiceImplBase {
                 .build();
 
         userService.addUser(user);
+
+        responseObserver.onNext(Empty.getDefaultInstance());
+        responseObserver.onCompleted();
     }
 
     @Override
-    public void getUserByName(UserMessage.GetUserRequest request, StreamObserver<UserMessage.GetUserResponse> responseObserver) {
-        var user = userService.getUserByUsername(request.getName());
+    public void getUserByUsername(UserMessage.GetUserByUsernameRequest request, StreamObserver<UserMessage.GetUserResponse> responseObserver) {
+        var user = userService.getUserByUsername(request.getUsername());
 
         var response = UserMessage.GetUserResponse.newBuilder()
                 .setId(user.getId())

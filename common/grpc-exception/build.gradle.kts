@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation("io.grpc:grpc-core:1.68.1")
+    implementation("net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE")
 }
 
 tasks.test {

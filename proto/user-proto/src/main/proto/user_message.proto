@@ -8,8 +8,8 @@ message AddUserRequest {
   string password = 3;
 }
 
-message GetUserRequest {
-  string name = 1;
+message GetUserByUsernameRequest {
+  string username = 1;
 }
 
 message GetUserResponse {
