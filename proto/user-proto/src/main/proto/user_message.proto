@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package ru.ners.usermanagement.model;
+
+message AddUserRequest {
+  string email = 1;
+  string username = 2;
+  string password = 3;
+}
+
+message GetUserByUsernameRequest {
+  string username = 1;
+}
+
+message GetUserResponse {
+  int64 id = 1;
+  string email = 2;
+  string username = 3;
+  string password = 4;
+}
+
+message GetUsersResponse {
+  repeated GetUserResponse users = 1;
+}
